@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def breadFruitPie(request):
+    return render(request, 'foodList/templates/breadFruitPie.html', {})
