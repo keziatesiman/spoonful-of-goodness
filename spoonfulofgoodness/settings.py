@@ -108,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Bangkok'
+TIME_ZONE = 'Asia/Jakarta'
 
 USE_I18N = True
 
@@ -123,5 +123,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static_asset'),
+    os.path.join(BASE_DIR, 'homepage/static'),
 )
 STATIC_ROOT = os.path.join(BASE_DIR,'static')

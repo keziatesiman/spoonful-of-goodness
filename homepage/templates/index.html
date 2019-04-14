@@ -1,9 +1,15 @@
 {% extends "spoonfulofgoodness/layout/base.html" %}
+{% load static %}
 {% load staticfiles %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/homepage.css' %}" type="text/css">
+{% endblock %}
+
 {% block content %}
 
 <!-- start banner Area -->
-<section class="banner-area relative" id="home">
+<section class="banner-area relative one-section" id="home">
     <div class="container">
         <div class="row fullscreen d-flex align-items-center justify-content-start">
             <div class="banner-content col-lg-8 col-md-12">
@@ -12,9 +18,9 @@
                     Spoonful of Goodness					
                 </h1>
                 <p class="text-white">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp <br> or incididunt ut labore et dolore magna aliqua. Ut enim ad minim.
+                    Do not bother yourself to worry about your nutrition limit.<br>Just state your needs and goals and we shall plan the best meals for you!
                 </p>
-                <a href="#" class="primary-btn header-btn text-uppercase">Check Our Menu</a>
+                <a href="#planner" class="primary-btn header-btn text-uppercase">Make Your Plan</a>
             </div>												
         </div>
     </div>
@@ -22,7 +28,7 @@
 <!-- End banner Area -->	
 
 <!-- Start top-dish Area -->
-<section class="top-dish-area section-gap" id="dish">
+<section class="top-dish-area section-gap one-section" id="dish">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-60 col-lg-8">
@@ -67,7 +73,7 @@
 
 
 <!-- Start features Area -->
-<section class="features-area pt-100" id="feature">
+<section class="features-area pt-100 one-section" id="feature">
     <div class="container">
         <div class="feature-section">
             <div class="row">
@@ -107,7 +113,7 @@
 
 
 <!-- Start related Area -->
-<section class="related-area section-gap">
+<section class="related-area section-gap one-section">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-60 col-lg-8">
@@ -155,7 +161,7 @@
 
 
 <!-- Start team Area -->
-<section class="team-area section-gap" id="chefs">
+<section class="team-area section-gap one-section" id="chefs">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
@@ -204,7 +210,7 @@
                     </div>
                 </div>
                 <div class="meta-text mt-30 text-center">
-                    <h4>Kevin Christian</h4>
+                    <h4>Kevin Christian Chandra</h4>
                     <p>Senior Core Developer</p>			    	
                 </div>
             </div>																		
@@ -214,7 +220,7 @@
 <!-- End team Area -->			
 
 <!-- start blog Area -->		
-<section class="blog-area section-gap" id="blog">
+<section class="blog-area section-gap one-section" id="blog">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
@@ -288,6 +294,52 @@
         </div>
     </div>	
 </section>
-<!-- end blog Area -->	
+<!-- end blog Area -->
+
+<!-- start planner Area -->		
+<section class="blog-area section-gap" id="planner">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="menu-content pb-70 col-lg-8">
+                    <div class="title text-center">
+                        <h1 class="mb-10">Make Your Meal Plan</h1>
+                        <p>Just enter your goal, needs, and restrictions. Let us make the plan for you.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <form>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Email address</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Example select</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">Example multiple select</label>
+                    <select multiple class="form-control" id="exampleFormControlSelect2">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Example textarea</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+            </form>
+        </div>	
+    </section>
+    <!-- end planner Area -->
 
 {% endblock %}
