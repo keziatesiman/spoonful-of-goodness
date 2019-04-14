@@ -2,35 +2,8 @@ from django import forms
 
 class Planner_Form(forms.Form):
     
-    error_messages = {
-        'required': 'Please fill this input',
-    }
-    
-    name_attrs = {
-        'class': 'form-control form-group',
-        'placeholder': 'Enter name of activity'
-    }
-
-    cat_attrs = {
-        'class': 'form-control form-group',
-        'placeholder': 'Enter category of activity'
-    }
-
-    loc_attrs = {
-        'class': 'form-control form-group',
-        'placeholder': 'Enter location of activity'
-    }
-
-    date_attrs = {
-        'class': 'form-control form-group',
-        'placeholder': 'Enter date of activity',
-        'type': 'date'
-    }
-
-    time_attrs = {
-        'class': 'form-control form-group',
-        'placeholder': 'Enter time of activity',
-        'type': 'time'
+    calories_error_messages = {
+        'required': 'Please fill out amount of calories you need.',
     }
 
     calories_attrs = {
@@ -38,9 +11,33 @@ class Planner_Form(forms.Form):
         'placeholder': 'Enter calories needed',
     }
 
-    name = forms.CharField(label='Activity Name', required=True, max_length=80, widget=forms.TextInput(attrs=name_attrs))
-    category = forms.CharField(label='Category', required=True,max_length=50, widget=forms.TextInput(attrs=cat_attrs))
-    location = forms.CharField(label='Location', required=False,max_length=100, widget=forms.TextInput(attrs=loc_attrs))
-    date = forms.DateField(label='Date', required=True, widget=forms.DateInput(attrs=date_attrs))
-    time = forms.TimeField(label='Time', required=True, widget=forms.TimeInput(attrs=time_attrs))
-    calories = forms.IntegerField(label = 'Calories', required=True, widget = forms.NumberInput(attrs=calories_attrs))
+    select_attrs = {
+        'class': 'form-control form-group',
+    }
+
+    meals_num_choices = (
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+    )
+
+    boolean_choices = (
+        (True, 'Yes'),
+        (False, 'No'),
+    )
+
+    calories = forms.IntegerField(label = 'Calories', required=True, widget = forms.NumberInput(attrs=calories_attrs), error_messages=calories_error_messages)
+    meals_per_day = forms.CharField(label = 'Number of Meals per Day',required=True, widget=forms.Select(choices=meals_num_choices, attrs=select_attrs))
+    on_diet = forms.CharField(label = 'Are you on diet?', widget=forms.Select(choices=boolean_choices, attrs=select_attrs))
+    contains_pork = forms.CharField(label = 'Do you consume pork?', widget=forms.Select(choices=boolean_choices, attrs=select_attrs))
+    contains_alcohol = forms.CharField(label = 'Do you consume alcohol?', widget=forms.Select(choices=boolean_choices, attrs=select_attrs))
+    contains_gluten = forms.CharField(label = 'Do you consume gluten?', widget=forms.Select(choices=boolean_choices, attrs=select_attrs))
+    contains_lactose = forms.CharField(label = 'Do you consume lactose?', widget=forms.Select(choices=boolean_choices, attrs=select_attrs))
+    contains_egg = forms.CharField(label = 'Do you consume eggs?', widget=forms.Select(choices=boolean_choices, attrs=select_attrs))
+    contains_meat = forms.CharField(label = 'Do you consume meat?', widget=forms.Select(choices=boolean_choices, attrs=select_attrs))
+    contains_vegan = forms.CharField(label = 'Do you consume vegan?', widget=forms.Select(choices=boolean_choices, attrs=select_attrs))
+    contains_milk = forms.CharField(label = 'Do you consume milk?', widget=forms.Select(choices=boolean_choices, attrs=select_attrs))
+    contains_milk_substitute = forms.CharField(label = 'Do you consume milk substitutes?', widget=forms.Select(choices=boolean_choices, attrs=select_attrs))
+    
+
