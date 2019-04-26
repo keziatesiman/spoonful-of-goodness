@@ -20,12 +20,13 @@ def submit_constraints(request):
         print("Form accepted.") # debug
         response['calories'] = request.POST['calories']
         response['meals_per_day'] = request.POST['meals_per_day']
-        response['contains_pork'] = request.POST.get('contains_pork', False) and True
         response['contains_alcohol'] = request.POST.get('contains_alcohol', False) and True
         response['contains_gluten'] = request.POST.get('contains_gluten', False) and True
         response['contains_lactose'] = request.POST.get('contains_lactose', False) and True
         response['contains_egg'] = request.POST.get('contains_egg', False) and True
         response['contains_meat'] = request.POST.get('contains_meat', False) and True
+        response['contains_pork'] = request.POST.get('contains_pork', False) and True
+        response['contains_fish'] = request.POST.get('contains_fish', False) and True
         response['is_vegan'] = request.POST.get('is_vegan', False) and True
         response['contains_milk'] = request.POST.get('contains_milk', False) and True
         response['contains_milk_substitute'] = request.POST.get('contains_milk_substitute', False) and True
