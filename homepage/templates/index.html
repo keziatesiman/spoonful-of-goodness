@@ -308,11 +308,11 @@
                 </div>
             </div>
 
-            <form method="POST" action="{% url 'homepage:index' %}">
+            <form method="POST" action="{% url 'homepage:submit-constraints' %}">
                 {% csrf_token%}
                 {{planner_form}}
 
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success">Get Your Plan</button>
             </form>
         </div>	
     </section>
