@@ -7,8 +7,7 @@ from foodList.models import Recipe
 def index(request):
     response = {}
     response['planner_form'] = Planner_Form
-    #debug
-    print("Views complete.")
+    print("Views complete.") # debug
     return render(request, 'homepage/templates/index.html', response)
 
 def submit_constraints(request):
@@ -17,28 +16,24 @@ def submit_constraints(request):
 
     # check whether method is a POST and whether the form is valid
     if(request.method == 'POST' and form.is_valid()):
-        print("Form accepted.")
-        print(request.POST['calories'])
-        print(request.POST['meals_per_day'])
-        print(request.POST['contains_pork'])
-        print(request.POST['contains_alcohol'])
-        print(request.POST['contains_gluten'])
-        print(request.POST['contains_lactose'])
-        print(request.POST['contains_egg'])
-        print(request.POST['contains_meat'])
-        print(request.POST['is_vegan'])
-        print(request.POST['contains_milk'])
-        print(request.POST['contains_milk_substitute'])
-        ''' response['name'] = request.POST['name']
-        response['category'] = request.POST['category']
-        response['location'] = request.POST['location']
-        response['date'] = request.POST['date']
-        response['time'] = request.POST['time']
-        activity = Activity(name=response['name'], category=response['category'], location=response['location'], date=response['date'], time=response['time'])
-        activity.save() '''
+        response = {}
+        print("Form accepted.") # debug
+        response['calories'] = request.POST['calories']
+        response['meals_per_day'] = request.POST['meals_per_day']
+        response['contains_alcohol'] = request.POST.get('contains_alcohol', False) and True
+        response['contains_gluten'] = request.POST.get('contains_gluten', False) and True
+        response['contains_lactose'] = request.POST.get('contains_lactose', False) and True
+        response['contains_egg'] = request.POST.get('contains_egg', False) and True
+        response['contains_meat'] = request.POST.get('contains_meat', False) and True
+        response['contains_pork'] = request.POST.get('contains_pork', False) and True
+        response['contains_fish'] = request.POST.get('contains_fish', False) and True
+        response['is_vegan'] = request.POST.get('is_vegan', False) and True
+        response['contains_milk'] = request.POST.get('contains_milk', False) and True
+        response['contains_milk_substitute'] = request.POST.get('contains_milk_substitute', False) and True
+        print(response) # debug
         return HttpResponseRedirect(reverse('homepage:index'))
 
     # if method is a GET (or any other method) or form is invalid, create a blank form
     else:
-        print("Form not accepted.")
+        print("Form not accepted.") # debug
         return HttpResponseRedirect(reverse('homepage:index'))

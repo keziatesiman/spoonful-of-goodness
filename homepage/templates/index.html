@@ -3,7 +3,7 @@
 {% load staticfiles %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/homepage.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}" type="text/css">
 {% endblock %}
 
 {% block content %}
@@ -318,4 +318,8 @@
     </section>
     <!-- end planner Area -->
 
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/homepage/constraints-form.js' %}"></script>
 {% endblock %}
