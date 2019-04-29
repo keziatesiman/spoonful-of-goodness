@@ -4,19 +4,20 @@ from django.urls import reverse
 from .forms import Planner_Form
 from foodList.models import Recipe
 
-has_submit_constraints_form = False
-response = {}
+form_response = {}
 
 def index(request):
-    global has_submit_constraints_form
+    global form_response
+    response = {}
     response['planner_form'] = Planner_Form
-    response['has_submit_constraints_form'] = has_submit_constraints_form
-    has_submit_constraints_form = False # To clear the flag
+    response['has_submit_constraints_form'] = bool(form_response)
+    response.update(form_response)
+    form_response = {}
     print("Views complete.") # debug
     return render(request, 'homepage/templates/index.html', response)
 
 def submit_constraints(request):
-    global has_submit_constraints_form
+    global form_response
     
     # create a form instance and populate it with data from the request:
     form = Planner_Form(request.POST or None)
@@ -24,20 +25,19 @@ def submit_constraints(request):
     # check whether method is a POST and whether the form is valid
     if(request.method == 'POST' and form.is_valid()):
         print("Form accepted.") # debug
-        response['calories'] = request.POST['calories']
-        response['meals_per_day'] = request.POST['meals_per_day']
-        response['contains_alcohol'] = request.POST.get('contains_alcohol', False) and True
-        response['contains_gluten'] = request.POST.get('contains_gluten', False) and True
-        response['contains_lactose'] = request.POST.get('contains_lactose', False) and True
-        response['contains_egg'] = request.POST.get('contains_egg', False) and True
-        response['contains_meat'] = request.POST.get('contains_meat', False) and True
-        response['contains_pork'] = request.POST.get('contains_pork', False) and True
-        response['contains_fish'] = request.POST.get('contains_fish', False) and True
-        response['is_vegan'] = request.POST.get('is_vegan', False) and True
-        response['contains_milk'] = request.POST.get('contains_milk', False) and True
-        response['contains_milk_substitute'] = request.POST.get('contains_milk_substitute', False) and True
-        print(response) # debug
-        has_submit_constraints_form = True
+        form_response['calories'] = request.POST['calories']
+        form_response['meals_per_day'] = request.POST['meals_per_day']
+        form_response['contains_alcohol'] = request.POST.get('contains_alcohol', False) and True
+        form_response['contains_gluten'] = request.POST.get('contains_gluten', False) and True
+        form_response['contains_lactose'] = request.POST.get('contains_lactose', False) and True
+        form_response['contains_egg'] = request.POST.get('contains_egg', False) and True
+        form_response['contains_meat'] = request.POST.get('contains_meat', False) and True
+        form_response['contains_pork'] = request.POST.get('contains_pork', False) and True
+        form_response['contains_fish'] = request.POST.get('contains_fish', False) and True
+        form_response['is_vegan'] = request.POST.get('is_vegan', False) and True
+        form_response['contains_milk'] = request.POST.get('contains_milk', False) and True
+        form_response['contains_milk_substitute'] = request.POST.get('contains_milk_substitute', False) and True
+        print(form_response) # debug
         return HttpResponseRedirect(reverse('homepage:index'))
 
     # if method is a GET (or any other method) or form is invalid, create a blank form
