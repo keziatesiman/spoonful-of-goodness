@@ -4,19 +4,25 @@ from django.urls import reverse
 from .forms import Planner_Form
 from foodList.models import Recipe
 
+has_submit_constraints_form = False
+response = {}
+
 def index(request):
-    response = {}
+    global has_submit_constraints_form
     response['planner_form'] = Planner_Form
+    response['has_submit_constraints_form'] = has_submit_constraints_form
+    has_submit_constraints_form = False # To clear the flag
     print("Views complete.") # debug
     return render(request, 'homepage/templates/index.html', response)
 
 def submit_constraints(request):
+    global has_submit_constraints_form
+    
     # create a form instance and populate it with data from the request:
     form = Planner_Form(request.POST or None)
 
     # check whether method is a POST and whether the form is valid
     if(request.method == 'POST' and form.is_valid()):
-        response = {}
         print("Form accepted.") # debug
         response['calories'] = request.POST['calories']
         response['meals_per_day'] = request.POST['meals_per_day']
@@ -31,6 +37,7 @@ def submit_constraints(request):
         response['contains_milk'] = request.POST.get('contains_milk', False) and True
         response['contains_milk_substitute'] = request.POST.get('contains_milk_substitute', False) and True
         print(response) # debug
+        has_submit_constraints_form = True
         return HttpResponseRedirect(reverse('homepage:index'))
 
     # if method is a GET (or any other method) or form is invalid, create a blank form
