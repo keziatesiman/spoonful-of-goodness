@@ -3,7 +3,7 @@
 {% load staticfiles %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/homepage.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}" type="text/css">
 {% endblock %}
 
 {% block content %}
@@ -41,7 +41,7 @@
         <div class="row">
             <div class="single-dish col-lg-4">
                 <div class="thumb">
-                    <img class="img-fluid"  src="img/d1.jpg" alt="">
+                    <img class="img-fluid"  src="{% static 'img/d1.jpg' %}" alt="">
                 </div>
                 <h4 class="text-uppercase pt-20 pb-20">Bread Fruit Cheese Sandwich</h4>
                 <p>
@@ -50,7 +50,7 @@
             </div>
             <div class="single-dish col-lg-4">
                 <div class="thumb">
-                    <img class="img-fluid"  src="img/d2.jpg" alt="">
+                    <img class="img-fluid"  src="{% static 'img/d2.jpg' %}" alt="">
                 </div>
                 <h4 class="text-uppercase pt-20 pb-20">Beef Cutlet with Spring Onion</h4>
                 <p>
@@ -59,7 +59,7 @@
             </div>
             <div class="single-dish col-lg-4">
                 <div class="thumb">
-                    <img class="img-fluid"  src="img/d3.jpg" alt="">
+                    <img class="img-fluid"  src="{% static 'img/d3.jpg' %}" alt="">
                 </div>
                 <h4 class="text-uppercase pt-20 pb-20">Meat with sauce & Vegetables</h4>
                 <p>
@@ -78,28 +78,28 @@
         <div class="feature-section">
             <div class="row">
                 <div class="single-feature col-lg-3 col-md-6">
-                    <img src="img/f1.png" alt="">
+                    <img src="{% static 'img/f1.png' %}" alt="">
                     <h4 class="pt-20 pb-20">Refreshing Breakfast</h4>
                     <p>
                         Lorem ipsum dolor sit ametcons ecteturadipis icing elit.
                     </p>
                 </div>
                 <div class="single-feature col-lg-3 col-md-6">
-                    <img src="img/f2.png" alt="">
+                    <img src="{% static 'img/f2.png' %}" alt="">
                     <h4 class="pt-20 pb-20">Awesome Lunch</h4>
                     <p>
                         Lorem ipsum dolor sit ametcons ecteturadipis icing elit.
                     </p>
                 </div>
                 <div class="single-feature col-lg-3 col-md-6">
-                    <img src="img/f3.png" alt="">
+                    <img src="{% static 'img/f3.png' %}" alt="">
                     <h4 class="pt-20 pb-20">Soothing Dinner</h4>
                     <p>
                         Lorem ipsum dolor sit ametcons ecteturadipis icing elit.
                     </p>
                 </div>
                 <div class="single-feature col-lg-3 col-md-6">
-                    <img src="img/f4.png" alt="">
+                    <img src="{% static 'img/f4.png' %}" alt="">
                     <h4 class="pt-20 pb-20">Rich Quality Buffet</h4>
                     <p>
                         Lorem ipsum dolor sit ametcons ecteturadipis icing elit.
@@ -136,7 +136,7 @@
                         <a href="#" class="primary-btn header-btn text-uppercase">view full menu</a>								   
                     </div>
                     <div class="col-lg-6">
-                        <img class="img-fluid" src="img/slider1.jpg" alt="">
+                        <img class="img-fluid" src="{% static 'img/slider1.jpg' %}" alt="">
                     </div>
                 </div>
                 <div class="item row align-items-center">
@@ -150,7 +150,7 @@
                         <a href="#" class="primary-btn header-btn text-uppercase">view full menu</a>								   
                     </div>
                     <div class="col-lg-6">
-                        <img class="img-fluid" src="img/slider1.jpg" alt="">
+                        <img class="img-fluid" src="{% static 'img/slider1.jpg' %}" alt="">
                     </div>
                 </div>							
             </div>
@@ -174,7 +174,7 @@
         <div class="row justify-content-center d-flex align-items-center">
             <div class="col-md-3 single-team">
                 <div class="thumb">
-                    <img class="img-fluid" src="img/t1.jpg" alt="">
+                    <img class="img-fluid" src="{% static 'img/t1.jpg' %}" alt="">
                     <div class="align-items-center justify-content-center d-flex">
                         <a href="#"><i class="fa fa-facebook"></i></a>
                         <a href="#"><i class="fa fa-twitter"></i></a>
@@ -188,7 +188,7 @@
             </div>
             <div class="col-md-3 single-team">
                 <div class="thumb">
-                    <img class="img-fluid" src="img/t2.jpg" alt="">
+                    <img class="img-fluid" src="{% static 'img/t2.jpg' %}" alt="">
                     <div class="align-items-center justify-content-center d-flex">
                         <a href="#"><i class="fa fa-facebook"></i></a>
                         <a href="#"><i class="fa fa-twitter"></i></a>
@@ -202,7 +202,7 @@
             </div>	
             <div class="col-md-3 single-team">
                 <div class="thumb">
-                    <img class="img-fluid" src="img/t3.jpg" alt="">
+                    <img class="img-fluid" src="{% static 'img/t3.jpg' %}" alt="">
                     <div class="align-items-center justify-content-center d-flex">
                         <a href="#"><i class="fa fa-facebook"></i></a>
                         <a href="#"><i class="fa fa-twitter"></i></a>
@@ -233,7 +233,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 single-blog">
                 <div class="thumb">
-                    <img class="img-fluid" src="img/b1.jpg" alt="">
+                    <img class="img-fluid" src="{% static 'img/b1.jpg' %}" alt="">
                 </div>
                 <p class="date">10 Jan 2018</p>
                 <a href="#"><h4>Cooking Perfect Fried Rice
@@ -248,7 +248,7 @@
             </div>
             <div class="col-lg-3 col-md-6 single-blog">
                 <div class="thumb">
-                    <img class="img-fluid" src="img/b2.jpg" alt="">
+                    <img class="img-fluid" src="{% static 'img/b2.jpg' %}" alt="">
                 </div>
                 <p class="date">10 Jan 2018</p>
                 <a href="#"><h4>Secret of making Heart 
@@ -263,7 +263,7 @@
             </div>
             <div class="col-lg-3 col-md-6 single-blog">
                 <div class="thumb">
-                    <img class="img-fluid" src="img/b3.jpg" alt="">
+                    <img class="img-fluid" src="{% static 'img/b3.jpg' %}" alt="">
                 </div>
                 <p class="date">10 Jan 2018</p>
                 <a href="#"><h4>How to check steak if 
@@ -278,7 +278,7 @@
             </div>
             <div class="col-lg-3 col-md-6 single-blog">
                 <div class="thumb">
-                    <img class="img-fluid" src="img/b4.jpg" alt="">
+                    <img class="img-fluid" src="{% static 'img/b4.jpg' %}" alt="">
                 </div>
                 <p class="date">10 Jan 2018</p>
                 <a href="#"><h4>Addiction When Gambling
@@ -308,14 +308,49 @@
                 </div>
             </div>
 
-            <form method="POST" action="{% url 'homepage:index' %}">
+            <form method="POST" action="{% url 'homepage:submit-constraints' %}">
                 {% csrf_token%}
                 {{planner_form}}
-
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success">Get Your Plan</button>
             </form>
+
+            {% if has_submit_constraints_form %}
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                    </tbody>
+                </table>
+            {% endif %}
         </div>	
     </section>
     <!-- end planner Area -->
 
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/homepage/constraints-form.js' %}"></script>
 {% endblock %}
