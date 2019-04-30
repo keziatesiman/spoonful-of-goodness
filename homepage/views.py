@@ -4,6 +4,9 @@ from django.urls import reverse
 from .forms import Planner_Form
 from foodList.models import Recipe
 
+import requests
+import json
+
 form_response = {}
 
 def index(request):
@@ -37,7 +40,9 @@ def submit_constraints(request):
         form_response['is_vegan'] = request.POST.get('is_vegan', False) and True
         form_response['contains_milk'] = request.POST.get('contains_milk', False) and True
         form_response['contains_milk_substitute'] = request.POST.get('contains_milk_substitute', False) and True
-        print(form_response) # debug
+        # print(form_response) # debug
+        something = requests.get('http://localhost:8000/foodRecommendation/', form_response)
+        aaa = json.loads(something.text)
         return HttpResponseRedirect(reverse('homepage:index'))
 
     # if method is a GET (or any other method) or form is invalid, create a blank form

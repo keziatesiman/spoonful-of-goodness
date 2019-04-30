@@ -1,22 +1,26 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from foodList.models import Recipe
 
+import json
+
 def foodRecomendation(request):
-    return render(request,'homepage/templates/index.html', {})
+    domain = filterDomain(request)
+    return JsonResponse(domain)
 
 def filterDomain(request):
-    pork = False
-    alcohol = False
-    gluten = False
-    lactose = False
-    egg = False
-    meat = False
-    vegan = False
-    containsMilk = False
-    containsMilkSubstitute = False
+    alcohol = request.GET.get('contains_alcohol')
+    gluten = request.GET.get('contains_gluten')
+    lactose = request.GET.get('contains_lactose')
+    egg = request.GET.get('contains_egg')
+    meat = request.GET.get('contains_meat')
+    pork = request.GET.get('contains_pork')
+    fish = request.GET.get('contains_fish')
+    vegan = request.GET.get('is_vegan')
+    containsMilk = request.GET.get('contains_milk')
+    containsMilkSubstitute = request.GET.get('contains_milk_substitute')
 
     domain = Recipe.objects.all()
-    domain = domain.filter(pork=pork, alcohol=alcohol, gluten=gluten, lactose=lactose, egg=egg,
+    domain = domain.filter(pork=pork, alcohol=alcohol, gluten=gluten, lactose=lactose, egg=egg, #fish=fish,
                 vegan=vegan, meat=meat, containsMilk=containsMilk, containsMilkSubstitute=containsMilkSubstitute)
-    print(domain)
-    return render(request,'homepage/templates/index.html', {})
+    return dict(domain)
