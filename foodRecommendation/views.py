@@ -6,7 +6,8 @@ import json
 
 def foodRecomendation(request):
     domain = filterDomain(request)
-    return JsonResponse(domain)
+    print(domain)
+    return JsonResponse(domain, safe=False)
 
 def filterDomain(request):
     alcohol = request.GET.get('contains_alcohol')
@@ -20,7 +21,6 @@ def filterDomain(request):
     containsMilk = request.GET.get('contains_milk')
     containsMilkSubstitute = request.GET.get('contains_milk_substitute')
 
-    domain = Recipe.objects.all()
-    domain = domain.filter(pork=pork, alcohol=alcohol, gluten=gluten, lactose=lactose, egg=egg, #fish=fish,
-                vegan=vegan, meat=meat, containsMilk=containsMilk, containsMilkSubstitute=containsMilkSubstitute)
-    return dict(domain)
+    domain = Recipe.objects.filter(pork=pork, alcohol=alcohol, gluten=gluten, lactose=lactose, egg=egg, #fish=fish,
+                vegan=vegan, meat=meat, containsMilk=containsMilk, containsMilkSubstitute=containsMilkSubstitute).values()
+    return list(domain)

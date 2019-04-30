@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'homepage',
     'foodList',
     'foodRecommendation',
+    'import_export',
 ]
 
 MIDDLEWARE = [
