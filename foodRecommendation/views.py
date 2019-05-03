@@ -7,16 +7,16 @@ import random
 assigned = []
 solution = []
 
-def food_recommendation(request):
+def food_recommendation(form_response):
     # filter domain by ingredients constraints
-    domain = filter_domain(request)
+    domain = filter_domain(form_response)
 
     # get number of calories needed
-    calory_type = request.GET.get('calories')
+    calory_type = form_response['calories']
     total_calories = get_calories(calory_type)
 
     # get number of meals per day
-    meals_per_day = int(request.GET.get('meals_per_day'))
+    meals_per_day = int(form_response['meals_per_day'])
 
     global solution
     to_return = {}
@@ -31,46 +31,46 @@ def food_recommendation(request):
             to_return = "No solution"
             break
 
-    return JsonResponse(to_return, safe=False)
+    return to_return
 
 # method to filter domain by ingredients constraints
-def filter_domain(request):
+def filter_domain(form_response):
     domain = Recipe.objects.all()
     
-    alcohol = request.GET.get('contains_alcohol')
+    alcohol = form_response['contains_alcohol']
     if (alcohol == "False"):
         domain = domain.filter(alcohol=False)
 
-    gluten = request.GET.get('contains_gluten')
+    gluten = form_response['contains_gluten']
     if (gluten == "False"):
         domain = domain.filter(gluten=False)
 
-    lactose = request.GET.get('contains_lactose')
+    lactose = form_response['contains_lactose']
     if (lactose == "False"):
         domain = domain.filter(lactose=False)
 
-    egg = request.GET.get('contains_egg')
+    egg = form_response['contains_egg']
     if (egg == "False"):
         domain = domain.filter(egg=False)
     
-    meat = request.GET.get('contains_meat')
+    meat = form_response['contains_meat']
     if (meat == "False"):
         domain = domain.filter(meat=False)
 
-    pork = request.GET.get('contains_pork')
+    pork = form_response['contains_pork']
     if (pork == "False"):
         domain = domain.filter(pork=False)
     
-    fish = request.GET.get('contains_fish')
+    fish = form_response['contains_fish']
     if (fish == "False"):
         domain = domain.filter(fish=False)
 
-    vegan = request.GET.get('is_vegan')
+    vegan = form_response['is_vegan']
     if (vegan == "True"):
         domain = domain.filter(vegan=True)
     
-    containsMilk = request.GET.get('contains_milk')
-    containsMilkSubstitute = request.GET.get('contains_milk_substitute')
+    containsMilk = form_response['contains_milk']
+    containsMilkSubstitute = form_response['contains_milk_substitute']
     if (containsMilk == "True"):
         pass
     elif (containsMilk == "False"):
