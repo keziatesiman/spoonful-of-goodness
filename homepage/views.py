@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from .forms import Planner_Form
 from foodList.models import Recipe
+from foodRecommendation.views import food_recommendation
 
 import requests
 import json
@@ -43,10 +44,9 @@ def submit_constraints(request):
         form_response['contains_milk'] = form.cleaned_data['contains_milk']
         form_response['contains_milk_substitute'] = form.cleaned_data['contains_milk_substitute']
         # print(form_response) # debug
-        something = requests.get('http://localhost:8000/foodRecommendation/', form_response)
-        aaa = json.loads(something.text)
-        return JsonResponse(aaa, safe=False)
-        return HttpResponseRedirect(reverse('homepage:index'))
+        something = food_recommendation(form_response)
+        print(something)
+        return JsonResponse(something, safe=False)
 
     # if method is a GET (or any other method) or form is invalid, create a blank form
     else:
