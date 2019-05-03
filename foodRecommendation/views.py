@@ -8,9 +8,6 @@ assigned = []
 solution = []
 
 def food_recommendation(request):
-    # set assigned
-    assign_assigned(Recipe.objects.all().count())
-
     # filter domain by ingredients constraints
     domain = filter_domain(request)
 
@@ -23,8 +20,10 @@ def food_recommendation(request):
 
     global solution
     to_return = {}
+    all_domain_size = Recipe.objects.all().count()
     for i in range(7):
         random.shuffle(domain)
+        set_assigned_to_false(all_domain_size)
         if search_food(domain, total_calories, meals_per_day):
             to_return[i] = solution
             solution = []
@@ -37,7 +36,6 @@ def food_recommendation(request):
 # method to filter domain by ingredients constraints
 def filter_domain(request):
     domain = Recipe.objects.all()
-    assign_assigned(len(domain))
     
     alcohol = request.GET.get('contains_alcohol')
     if (alcohol == "False"):
@@ -91,7 +89,9 @@ def get_calories(calory_type):
     if (calory_type == 'High Calories'):
         return 3000
 
-def assign_assigned(n):
+def set_assigned_to_false(n):
+    global assigned
+    assigned = []
     for i in range(n+2):
         assigned.append(False)
 
@@ -103,12 +103,13 @@ def search_food(domain, total_calories, meals_per_day):
             return False
 
     for food in domain:
+        global assigned
         if not assigned[food['id']]:
             assigned[food['id']] = True
             if search_food(domain, total_calories - food['recipeCalories'], meals_per_day - 1):
                 to_append = dict((key, food[key]) for key in ['recipeName', 'recipeCalories'])
                 solution.append(to_append)
                 return True
-        assigned[food['id']] = False
+            assigned[food['id']] = False
 
     return False
