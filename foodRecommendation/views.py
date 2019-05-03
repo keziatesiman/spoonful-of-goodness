@@ -102,7 +102,7 @@ def search_food(domain, total_calories, meals_per_day):
     for food in domain:
         if not assigned[food['id']]:
             assigned[food['id']] = True
-            if search_food(domain, total_calories - int(food['recipeCalories']), meals_per_day - 1):
+            if search_food(domain, total_calories - food['recipeCalories'], meals_per_day - 1):
                 solution.append(food)
                 return True
         assigned[food['id']] = False
