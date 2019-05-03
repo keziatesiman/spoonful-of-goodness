@@ -14,6 +14,7 @@ class Recipe(models.Model):
     egg = models.BooleanField(default=False)
     meat = models.BooleanField(default=False)
     vegan = models.BooleanField(default=False)
+    fish = models.BooleanField(default=False)
     containsMilk = models.BooleanField(default=False)
     containsMilkSubstitute = models.BooleanField(default=False)
 
