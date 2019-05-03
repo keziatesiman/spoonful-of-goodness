@@ -2,10 +2,7 @@ from django.db import models
 
 class Recipe(models.Model):
     recipeName = models.CharField(max_length=50)
-    recipeCalories = models.IntegerField(default=0)
-    ingredients = models.CharField(max_length=100)
-    time = models.CharField(max_length=50)
-    serving = models.CharField(max_length=50)
+    recipeCalories = models.CharField(max_length=50)
 
     pork = models.BooleanField(default=False)
     alcohol = models.BooleanField(default=False)
