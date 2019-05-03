@@ -22,14 +22,17 @@ def food_recommendation(request):
     meals_per_day = int(request.GET.get('meals_per_day'))
 
     global solution
-    
-    if search_food(domain, total_calories, meals_per_day):
-        print("ada solusi")
-        print(solution)
-    else:
-        print("tidak ada solusi")
+    to_return = {}
+    for i in range(7):
+        random.shuffle(domain)
+        if search_food(domain, total_calories, meals_per_day):
+            to_return[i] = solution
+            solution = []
+        else:
+            to_return = "No solution"
+            break
 
-    return JsonResponse(domain, safe=False)
+    return JsonResponse(to_return, safe=False)
 
 # method to filter domain by ingredients constraints
 def filter_domain(request):
@@ -103,7 +106,8 @@ def search_food(domain, total_calories, meals_per_day):
         if not assigned[food['id']]:
             assigned[food['id']] = True
             if search_food(domain, total_calories - food['recipeCalories'], meals_per_day - 1):
-                solution.append(food)
+                to_append = dict((key, food[key]) for key in ['recipeName', 'recipeCalories'])
+                solution.append(to_append)
                 return True
         assigned[food['id']] = False
 
