@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'homepage',
     'foodList',
+    'foodRecommendation',
+    'import_export',
 ]
 
 MIDDLEWARE = [
