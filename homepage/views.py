@@ -11,8 +11,10 @@ def index(request):
     response = {}
     response['planner_form'] = Planner_Form
     response['has_submit_constraints_form'] = bool(form_response)
-    response.update(form_response)
-    form_response = {}
+    if (bool(form_response)):
+        response.update(form_response)
+        form_response = {}
+        response['all_recipes'] = Recipe.objects.all().values()
     print("Views complete.") # debug
     return render(request, 'homepage/templates/index.html', response)
 
