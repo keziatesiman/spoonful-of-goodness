@@ -3,29 +3,35 @@ from django import forms
 class Planner_Form(forms.Form):
     select_attrs = {
         'class': 'form-control',
+        'style': 'margin-bottom: 1rem;',
     }
 
     checkbox_attrs = {
         'class': 'form-check',
+        'style': 'margin-bottom: 1rem;',
     }
 
     vegan_checkbox_attrs = {
         'class': 'form-check',
+        'style': 'margin-bottom: 1rem;',
         'onclick': "uncheckAntiVegan()",
     }
 
     antivegan_checkbox_attrs = {
         'class': 'form-check',
+        'style': 'margin-bottom: 1rem;',
         'onclick': "uncheckVegan()",
     }
 
     milk_checkbox_attrs = {
         'class': 'form-check',
+        'style': 'margin-bottom: 1rem;',
         'onclick': "milkIsChecked()",
     }
 
     milk_substitute_checkbox_attrs = {
         'class': 'form-check',
+        'style': 'margin-bottom: 1rem;',
         'onclick': "uncheckMilk()",
     }
 
