@@ -2,11 +2,15 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from foodList.models import Recipe
 
-import json
+import random
 
 assigned = []
+solution = []
 
 def food_recommendation(request):
+    # set assigned
+    assign_assigned(Recipe.objects.all().count())
+
     # filter domain by ingredients constraints
     domain = filter_domain(request)
 
@@ -15,16 +19,22 @@ def food_recommendation(request):
     total_calories = get_calories(calory_type)
 
     # get number of meals per day
-    meals_per_day = request.GET.get('meals_per_day')
+    meals_per_day = int(request.GET.get('meals_per_day'))
 
-    # assign_assigned(len(domain))
-    # search_food(domain, total_calories, meals_per_day)
+    global solution
+    
+    if search_food(domain, total_calories, meals_per_day):
+        print("ada solusi")
+        print(solution)
+    else:
+        print("tidak ada solusi")
 
     return JsonResponse(domain, safe=False)
 
 # method to filter domain by ingredients constraints
 def filter_domain(request):
     domain = Recipe.objects.all()
+    assign_assigned(len(domain))
     
     alcohol = request.GET.get('contains_alcohol')
     if (alcohol == "False"):
@@ -59,14 +69,14 @@ def filter_domain(request):
         domain = domain.filter(vegan=True)
     
     containsMilk = request.GET.get('contains_milk')
-    if (containsMilk == "False"):
-        domain = domain.filter(containsMilk=False)
-
     containsMilkSubstitute = request.GET.get('contains_milk_substitute')
-    if (containsMilkSubstitute == "False"):
-        domain = domain.filter(containsMilkSubstitute=False)
+    if (containsMilk == "True"):
+        pass
+    elif (containsMilk == "False"):
+        domain = domain.filter(containsMilk=False)
+        if (containsMilkSubstitute == "False"):
+            domain = domain.filter(containsMilkSubstitute=False)
 
-    print(domain)
     return list(domain.values())
 
 # method to get number of calories by calory type
@@ -79,19 +89,22 @@ def get_calories(calory_type):
         return 3000
 
 def assign_assigned(n):
-    for i in range(n+1):
-        assigned[i] = False
+    for i in range(n+2):
+        assigned.append(False)
 
 def search_food(domain, total_calories, meals_per_day):
     if meals_per_day == 0:
-        if abs(total_calories) < 100:
+        if abs(total_calories) < 150:
             return True
+        else:
+            return False
 
     for food in domain:
-        if assigned[food['id']]:
-            pass
-        else:
+        if not assigned[food['id']]:
             assigned[food['id']] = True
-            if search_food(domain, total_calories - food['recipeCalories'], meals_per_day - 1):
-                return
+            if search_food(domain, total_calories - int(food['recipeCalories']), meals_per_day - 1):
+                solution.append(food)
+                return True
         assigned[food['id']] = False
+
+    return False
