@@ -4,6 +4,7 @@
 
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/homepage.css' %}" type="text/css">
+    <script src="{% static 'js/homepage/planner-table.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -318,213 +319,49 @@
             <!-- Uses bootstrap's classes to create table -->
             <!-- Creates table by filling each column one by one, not filling per row.
             Source: https://stackoverflow.com/questions/16071864/how-to-create-tables-from-column-data-instead-of-row-data-in-html -->
+            
+            {% if has_solution %}
             <div class="table-responsive">
                 <table>
                     <thead class="thead-light table table-hover">
                         <tr>
-                            <th scope="col">Sunday</th>
-                            <th scope="col">Monday</th>
-                            <th scope="col">Tuesday</th>
-                            <th scope="col">Wednesday</th>
-                            <th scope="col">Thursday</th>
-                            <th scope="col">Friday</th>
-                            <th scope="col">Saturday</th>
+                            {% for item in planned_recipes %}
+                                <th scope="col">{{item}}</th>
+                            {% endfor %}
                         </tr>
                     </thead>
 
                     <tr>
+                    {% for key, value in planned_recipes.items %}
                     <td>
                         <table class="table table-hover">
                             <tbody>
+                                {% for recipeName in value %}
                                 <tr>
                                     <td>
                                         <div class="card">
                                             <div class="card-body">
-                                                <h5 class="card-title">Food a la te</h5>
-                                                <a href="#" class="btn btn-primary">Check it out!</a>
+                                                <h5 class="card-title">{{recipeName}}</h5>
+                                                <a href="#planner" onmouseover="getHrefForPlannerCardButton(this)" class="btn btn-primary check-it-out">Check it out!</a>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Food a la te</h5>
-                                                <a href="#" class="btn btn-primary">Check it out!</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                {% endfor %}
+                                
                             </tbody>
                         </table>
                     </td>
-
-                    <td>
-                        <table class="table table-hover">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Food a la te</h5>
-                                                <a href="#" class="btn btn-primary">Check it out!</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Food a la te</h5>
-                                                <a href="#" class="btn btn-primary">Check it out!</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-
-                    <td>
-                        <table class="table table-hover">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Food a la te</h5>
-                                                <a href="#" class="btn btn-primary">Check it out!</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Food a la te</h5>
-                                                <a href="#" class="btn btn-primary">Check it out!</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-
-                    <td>
-                        <table class="table table-hover">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Food a la te</h5>
-                                                <a href="#" class="btn btn-primary">Check it out!</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Food a la te</h5>
-                                                <a href="#" class="btn btn-primary">Check it out!</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-
-                    <td>
-                        <table class="table table-hover">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Food a la te</h5>
-                                                <a href="#" class="btn btn-primary">Check it out!</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Food a la te</h5>
-                                                <a href="#" class="btn btn-primary">Check it out!</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-
-                    <td>
-                        <table class="table table-hover">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Food a la te</h5>
-                                                <a href="#" class="btn btn-primary">Check it out!</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Food a la te</h5>
-                                                <a href="#" class="btn btn-primary">Check it out!</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-
-                    <td>
-                        <table class="table table-hover">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Food a la te</h5>
-                                                <a href="#" class="btn btn-primary">Check it out!</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Food a la te</h5>
-                                                <a href="#" class="btn btn-primary">Check it out!</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    
+                    {% endfor %} 
                     </tr>
                 </table>
             </div>
+            {% else %}
+            <div class="alert alert-danger" role="alert">
+                    The combination of inputs you submit could not be planned.
+            </div>
+            {% endif %}
+        
         {% endif %}
     </div>	
 </section>
