@@ -46,7 +46,7 @@ def submit_constraints(request):
         # print(form_response) # debug
         something = food_recommendation(form_response)
         print(something)
-        return JsonResponse(something, safe=False)
+        return JsonResponse(something, safe=False) # Need to examined
 
     # if method is a GET (or any other method) or form is invalid, create a blank form
     else:
