@@ -42,7 +42,6 @@ class Planner_Form(forms.Form):
     )
 
     meals_num_choices = (
-        (1, 1),
         (2, 2),
         (3, 3),
         (4, 4),
