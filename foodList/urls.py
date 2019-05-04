@@ -18,4 +18,13 @@ urlpatterns = [
     path('soyMilk/', views.soyMilk, name="soyMilk"),
     path('veganLasagnaRolls/', views.veganLasagnaRolls, name="veganLasagnaRolls"),
     path('veganPizzaWithSoyMilk/', views.veganPizzaWithSoyMilk, name="veganPizzaWithSoyMilk"),
+    path('vegetableMeat/', views.vegetableMeat, name="vegetableMeat"),
+    path('porkChopWithMashedPotatoes/', views.porkChopWithMashedPotatoes, name="porkChopWithMashedPotatoes"),
+    path('cerealWithFruit/', views.cerealWithFruit, name="cerealWithFruit"),
+    path('tunaCucumberWrap/', views.tunaCucumberWrap, name="tunaCucumberWrap"),
+    path('scrambledEggs/', views.scrambledEggs, name="scrambledEggs"),
+    path('bananaBread/', views.bananaBread, name="bananaBread"),
+    path('caesarSalad/', views.caesarSalad, name="caesarSalad"),
+    path('californiaRollSushi/', views.californiaRollSushi, name="californiaRollSushi"),
+    path('greenSaladWithHoneyLemonChicken/', views.greenSaladWithHoneyLemonChicken, name="greenSaladWithHoneyLemonChicken"),
 ]
