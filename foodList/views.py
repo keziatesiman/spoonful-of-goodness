@@ -44,3 +44,44 @@ def veganLasagnaRolls(request):
 
 def veganPizzaWithSoyMilk(request):
     return render(request, 'foodList/templates/veganPizzaWithSoyMilk.html', {})
+
+def vegetableMeat(request):
+    return render(request, 'foodList/templates/vegetableMeat.html', {})
+
+def porkChopWithMashedPotatoes(request):
+    return render(request, 'foodList/templates/porkChopWithMashedPotatoes.html', {})
+    
+
+def cerealWithFruit(request):
+    return render(request, 'foodList/templates/cerealWithFruit.html', {})
+    
+
+def tunaCucumberWrap(request):
+    return render(request, 'foodList/templates/tunaCucumberWrap.html', {})
+    
+def honeyLemonChicken(request):
+    return render(request, 'foodList/templates/honeyLemonChicken.html', {})
+    
+
+def scrambledEggs(request):
+    return render(request, 'foodList/templates/scrambledEggs.html', {})
+    
+
+def bananaBread(request):
+    return render(request, 'foodList/templates/bananaBread.html', {})
+    
+
+def caesarSalad(request):
+    return render(request, 'foodList/templates/caesarSalad.html', {})
+    
+
+def californiaRollSushi(request):
+    return render(request, 'foodList/templates/californiaRollSushi.html', {})
+    
+
+def greenSaladWithHoneyLemonChicken(request):
+    return render(request, 'foodList/templates/greenSaladWithHoneyLemonChicken.html', {})
+    
+
+
+
