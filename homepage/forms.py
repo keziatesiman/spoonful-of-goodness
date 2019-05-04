@@ -47,6 +47,11 @@ class Planner_Form(forms.Form):
         (4, 4),
     )
 
+    milk_choices = (
+        ('Milk', 'Milk'),
+        ('Milk substitute', 'Milk substitute'),
+    )
+
     boolean_choices = (
         (True, 'Yes'),
         (False, 'No'),
@@ -61,6 +66,7 @@ class Planner_Form(forms.Form):
 
     calories = forms.ChoiceField(label = 'Calories', required=True, choices=calories_choices, widget = forms.Select(attrs=select_attrs))
     meals_per_day = forms.ChoiceField(label = 'Number of Meals per Day',required=True, choices=meals_num_choices, widget=forms.Select(attrs=select_attrs))
+    milk = forms.ChoiceField(label= 'Which milk to include', required=True, choices=milk_choices, widget=forms.Select(attrs=select_attrs))
     contains_alcohol = forms.BooleanField(label= 'Include alcohol', required=False, widget=forms.CheckboxInput(attrs=checkbox_attrs))
     contains_gluten = forms.BooleanField(label= 'Include gluten', required=False, widget=forms.CheckboxInput(attrs=checkbox_attrs))
     contains_lactose = forms.BooleanField(label= 'Include lactose', required=False, widget=forms.CheckboxInput(attrs=checkbox_attrs))
@@ -69,7 +75,5 @@ class Planner_Form(forms.Form):
     contains_meat = forms.BooleanField(label= 'Include meat', required=False, widget=forms.CheckboxInput(attrs=antivegan_checkbox_attrs))
     contains_pork = forms.BooleanField(label= 'Include pork', required=False, widget=forms.CheckboxInput(attrs=antivegan_checkbox_attrs))
     contains_fish = forms.BooleanField(label= 'Include fish', required=False, widget=forms.CheckboxInput(attrs=antivegan_checkbox_attrs))
-    contains_milk = forms.BooleanField(label= 'Include milk', required=False, widget=forms.CheckboxInput(attrs=milk_checkbox_attrs))
-    contains_milk_substitute = forms.BooleanField(label= 'Include milk substitute', required=False, widget=forms.CheckboxInput(attrs=milk_substitute_checkbox_attrs))
     
 

@@ -319,7 +319,8 @@
             <!-- Uses bootstrap's classes to create table -->
             <!-- Creates table by filling each column one by one, not filling per row.
             Source: https://stackoverflow.com/questions/16071864/how-to-create-tables-from-column-data-instead-of-row-data-in-html -->
-
+            
+            {% if has_solution %}
             <div class="table-responsive">
                 <table>
                     <thead class="thead-light table table-hover">
@@ -351,13 +352,16 @@
                             </tbody>
                         </table>
                     </td>
-                    {% endfor %}
-                
-                    
-                    
+                    {% endfor %} 
                     </tr>
                 </table>
             </div>
+            {% else %}
+            <div class="alert alert-danger" role="alert">
+                    The combination of inputs you submit could not be planned.
+            </div>
+            {% endif %}
+        
         {% endif %}
     </div>	
 </section>

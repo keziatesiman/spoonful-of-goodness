@@ -12,16 +12,18 @@ form_response = {}
 json_response = {}
 
 def index(request):
-    global form_response
     global json_response
     response = {}
     response['planner_form'] = Planner_Form
-    response['has_submit_constraints_form'] = bool(form_response)
-    if (bool(form_response)):
+    response['has_submit_constraints_form'] = bool(json_response)
+    if (bool(json_response)):
         # should do something with json_response first
         dict_of_recipes = get_recipes_from_json(json_response)
-        form_response = {}
         json_response = {}
+        if (dict_of_recipes == None):
+            response["has_solution"] = False
+        else:
+            response["has_solution"] = True
         response["planned_recipes"] = dict_of_recipes
         print(response["planned_recipes"]) # debug
     print("Views complete.") # debug
@@ -50,12 +52,13 @@ def submit_constraints(request):
         form_response['contains_pork'] = form.cleaned_data['contains_pork']
         form_response['contains_fish'] = form.cleaned_data['contains_fish'] 
         form_response['is_vegan'] = form.cleaned_data['is_vegan']
-        form_response['contains_milk'] = form.cleaned_data['contains_milk']
-        form_response['contains_milk_substitute'] = form.cleaned_data['contains_milk_substitute']
+        form_response['contains_milk'] = form.cleaned_data['milk'] == "Milk"
+        form_response['contains_milk_substitute'] = form.cleaned_data['milk'] == "Milk substitute"
         print(form_response) # debug
         
         json_response = get_json_of_food_recommendation(form_response)
         print(json_response) #debug
+        form_response = {}
         return HttpResponseRedirect(reverse('homepage:index'))
 
     # if method is a GET (or any other method) or form is invalid, create a blank form
@@ -81,33 +84,39 @@ def get_recipes_from_json(json_response):
         "6": [{"recipeName": "porkChopWithMashedPotatoes", "recipeCalories": 900}, {"recipeName": "peanutRaisinOatmeal", "recipeCalories": 204}]
     }
     '''
-    recipe_dict = {} # dict with days as key and list of model objects as value
 
-    dict_of_days = {
-        "0": "Sunday",
-        "1": "Monday",
-        "2": "Tuesday",
-        "3": "Wednesday",
-        "4": "Thursday",
-        "5": "Friday",
-        "6": "Saturday",
-    }
     print(type(json_response.content)) #debug
     print(json_response.content) #debug
-    dict_from_json = json.loads(json_response.content.decode("utf-8"))
+    json_response_content = json_response.content.decode("utf-8")
+    data_from_json = json.loads(json_response_content)
+    if (isinstance(data_from_json, dict)):
+        recipe_dict = {} # dict with days as key and list of model object names as value
 
-    for key in dict_from_json.keys():
-        day = dict_of_days[key]
-        day_food_list = dict_from_json[key] # list of dictionaries
-
-        list_of_recipe_for_day = change_list_of_dictionaries_to_list_of_model_objects(day_food_list) # list of model objects
+        dict_of_days = {
+            "0": "Sunday",
+            "1": "Monday",
+            "2": "Tuesday",
+            "3": "Wednesday",
+            "4": "Thursday",
+            "5": "Friday",
+            "6": "Saturday",
+        }
         
-        recipe_dict[day] = list_of_recipe_for_day
-    
+
+        for key in data_from_json.keys():
+            day = dict_of_days[key]
+            day_food_list = data_from_json[key] # list of dictionaries
+
+            list_of_recipe_for_day = change_list_of_dictionaries_to_list_of_model_objects(day_food_list) # list of model object names
+            
+            recipe_dict[day] = list_of_recipe_for_day
+    else:
+        recipe_dict = None
+        
     return recipe_dict
 
 def change_list_of_dictionaries_to_list_of_model_objects(day_food_list):
-    list_of_recipe_for_day = [] # list of model objects
+    list_of_recipe_for_day = [] # list of model object names
     for dictio in day_food_list:
         recipe_object = (Recipe.objects.filter(recipeName = dictio["recipeName"]))[0].recipeName
         list_of_recipe_for_day.append(recipe_object)
