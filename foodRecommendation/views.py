@@ -10,7 +10,7 @@ solution = []
 def food_recommendation(form_response):
     # filter domain by ingredients constraints
     domain = filter_domain(form_response)
-
+    
     # get number of calories needed
     calory_type = form_response['calories']
     total_calories = get_calories(calory_type)
@@ -38,44 +38,44 @@ def filter_domain(form_response):
     domain = Recipe.objects.all()
     
     alcohol = form_response['contains_alcohol']
-    if (alcohol == "False"):
+    if not alcohol:
         domain = domain.filter(alcohol=False)
 
     gluten = form_response['contains_gluten']
-    if (gluten == "False"):
+    if not gluten:
         domain = domain.filter(gluten=False)
 
     lactose = form_response['contains_lactose']
-    if (lactose == "False"):
+    if not lactose:
         domain = domain.filter(lactose=False)
 
+    vegan = form_response['is_vegan']
+    if vegan:
+        domain = domain.filter(vegan=True)
+
     egg = form_response['contains_egg']
-    if (egg == "False"):
+    if not egg:
         domain = domain.filter(egg=False)
     
     meat = form_response['contains_meat']
-    if (meat == "False"):
+    if not meat:
         domain = domain.filter(meat=False)
 
     pork = form_response['contains_pork']
-    if (pork == "False"):
+    if not pork:
         domain = domain.filter(pork=False)
     
     fish = form_response['contains_fish']
-    if (fish == "False"):
+    if not fish:
         domain = domain.filter(fish=False)
-
-    vegan = form_response['is_vegan']
-    if (vegan == "True"):
-        domain = domain.filter(vegan=True)
     
     containsMilk = form_response['contains_milk']
     containsMilkSubstitute = form_response['contains_milk_substitute']
-    if (containsMilk == "True"):
+    if containsMilk:
         pass
-    elif (containsMilk == "False"):
+    else:
         domain = domain.filter(containsMilk=False)
-        if (containsMilkSubstitute == "False"):
+        if not containsMilkSubstitute:
             domain = domain.filter(containsMilkSubstitute=False)
 
     return list(domain.values())
